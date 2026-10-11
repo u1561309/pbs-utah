@@ -12,9 +12,9 @@ def reproduce(root, cleaned_run=None):
     if Path.cwd().resolve() != root:
         raise ValueError('Run this command from the project root.')
     if cleaned_run is None:
-        notebook_path = root / 'analysis.ipynb'
+        notebook_path = root / 'data_preparation.ipynb'
         if not notebook_path.exists():
-            notebook_path = root / 'notebooks' / 'analysis.ipynb'
+            notebook_path = root / 'notebooks' / 'data_preparation.ipynb'
         notebook = json.loads(notebook_path.read_text())
         by_id = {cell['id']: cell for cell in notebook['cells']}
         clean_cells = ['pbs-utah-02', 'pbs-clean-24', 'pbs-clean-26', 'pbs-clean-28',
@@ -22,7 +22,7 @@ def reproduce(root, cleaned_run=None):
         namespace = {}
         for cell_id in clean_cells:
             cell = by_id[cell_id]
-            exec(compile(''.join(cell['source']), f'analysis.ipynb:{cell_id}', 'exec'), namespace)
+            exec(compile(''.join(cell['source']), f'data_preparation.ipynb:{cell_id}', 'exec'), namespace)
         cleaned_run = namespace['OUT']
         del namespace
     else:

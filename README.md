@@ -12,7 +12,15 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-For interactive notebook editing, install JupyterLab in your own environment. `analysis.ipynb` is the local working notebook with saved results. The tracked, source-only copy is `notebooks/analysis.ipynb`. The reproduction command uses that copy when the root working notebook is absent. For interactive work on a fresh checkout, copy it into the root as `analysis.ipynb`; do not overwrite an existing working notebook.
+For interactive notebook editing, install JupyterLab in your own environment. Executed working notebooks are in the root; matching source-only collaboration copies are in `notebooks/`:
+
+| Notebook | Purpose |
+| --- | --- |
+| `analysis.ipynb` | Descriptive EDA, figures and findings |
+| `data_preparation.ipynb` | Source checks, cleanup and reconciliation |
+| `modeling.ipynb` | Historical outcome feasibility, model comparison and consumed final test |
+
+The reproduction command uses `notebooks/data_preparation.ipynb` when the root preparation notebook is absent. For interactive work on a fresh checkout, copy the shared notebooks to the root without overwriting existing working notebooks. A full pre-cleanup backup is retained locally at `data/notebook_archive/analysis_before_cleanup_20261011.ipynb`.
 
 ## Inputs and reproduction
 
@@ -30,7 +38,7 @@ Or reuse a validated cleaning run:
 MPLBACKEND=Agg python -m analysis.reproduce_eda --cleaned-run data/cleaned/<run_id>
 ```
 
-The command executes the identified cleanup cells from the working notebook and invokes reusable EDA modules. Each run writes a new versioned directory, original-file hashes, checks and aggregate outputs. It prints the new paths. It never trains a model, scores the consumed final test, assigns donors or sends outreach. Cleaning loads the exports into memory; allow several GB of working memory. Notebook reload cells refer to the saved runs from this workspace; on a fresh checkout, replace those paths with the new command outputs.
+The command executes the identified cleanup cells from `data_preparation.ipynb` and invokes reusable EDA modules. Each run writes a new versioned directory, original-file hashes, checks and aggregate outputs. It prints the new paths. It never trains a model, scores the consumed final test, assigns donors or sends outreach. Cleaning loads the exports into memory; allow several GB of working memory. Notebook reload cells refer to the saved runs from this workspace; on a fresh checkout, replace those paths with the new command outputs.
 
 For only the extended EDA, given both validated inputs:
 
@@ -50,6 +58,6 @@ See `objectives.md` for goals and progress, `analysis/data_review.md` for source
 
 ## Collaboration
 
-Track scripts, objectives, environment requirements, reports and the source-only notebook. Keep raw exports, row-level derived data, local environments and executed notebook outputs out of the repository. Refresh `notebooks/analysis.ipynb` from the working notebook after edits by stripping execution outputs; preserve the working notebook.
+Track scripts, objectives, environment requirements, reports and the source-only notebooks. Keep raw exports, row-level derived data, local environments and executed notebook outputs out of the repository. Refresh each copy in `notebooks/` from its corresponding root notebook after edits by stripping execution outputs; preserve the executed working versions.
 
 The local Git repository can be reviewed with `git status` and `git diff`. No GitHub remote is configured by this workflow. Choose the destination repository and visibility before publishing; collaborators need authorized access to the separate raw exports to reproduce results. Review changes in branches and document assumptions alongside results.

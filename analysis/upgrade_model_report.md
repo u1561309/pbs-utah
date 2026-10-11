@@ -44,7 +44,7 @@ Selected comparison run: `data/models/20261011T045412Z_a1281ec2/`.
 - `logistic_coefficients.csv` and `tree_rules.txt`: model explanations.
 - `validation_checks.csv` and `validation_precision.png`: verification and comparison figure.
 
-Use the modeling section of `analysis.ipynb`. Default behavior reloads this run. To generate a new comparison, set `REBUILD_UPGRADE_MODELS = True`. The reusable implementation is `analysis/upgrade_model.py`; saved pipelines must receive its `feature_matrix()` output. Development dependencies are recorded in `analysis/requirements-modeling.txt` and the run manifest.
+Use `modeling.ipynb`. Default behavior reloads this run. The final test is now consumed; do not select new models using it. The reusable implementation is `analysis/upgrade_model.py`; saved pipelines must receive its `feature_matrix()` output. Development dependencies are recorded in `analysis/requirements-modeling.txt` and the run manifest.
 
 ## Next step
 

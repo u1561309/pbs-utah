@@ -12,7 +12,7 @@ Prediction cutoff: June 30, 2025. Outcome window ends June 30, 2026. Test popula
 
 The benchmark expectation averages uniformly over ties at the cutoff; its deterministic donor-ID-ordered list contains 59 upgrades. The model has no boundary tie. The model captures 4.55% of all test upgrades. No significance or calibrated-probability claim is made.
 
-Outputs: `data/final_evaluation/20261011T055348Z_689b5d06`. Reloadable cells and results are appended to `analysis.ipynb`. Implementation: `analysis/final_evaluation.py`.
+Outputs: `data/final_evaluation/20261011T055348Z_689b5d06`. Reloadable cells and results are in `modeling.ipynb`. Implementation: `analysis/final_evaluation.py`.
 
 The test is now consumed. Do not select additional features, models or capacity using its outcomes. Later development needs a new untouched period or evaluation design. These synthetic-data results do not establish that outreach causes additional gifts or that capacity 500 is appropriate.
 

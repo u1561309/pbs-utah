@@ -20,3 +20,5 @@ venv/
 
 # Local executed notebook stays intact; share its source-only export.
 /analysis.ipynb
+/data_preparation.ipynb
+/modeling.ipynb
